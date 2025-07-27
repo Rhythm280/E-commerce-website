@@ -2,9 +2,12 @@ import React from 'react'
 import products from '../data.json'
 import toast from 'react-hot-toast'
 
-function HomePage({ data }) {
+function HomePage({ data, payment, card, buynow }) {
 
     const { cartData, setCartData } = data;
+    const { paymentPage, setPaymentPage } = payment;
+    const {isBuynNowCard, setBuyNowCard} = card;
+    const {isBuyNowCart, setBuyNowCart} = buynow;
 
     const handleCart = (product) => {
         const alreadyExist = cartData.find((ele, i) => ele.id == product.id);
@@ -30,7 +33,7 @@ function HomePage({ data }) {
                     <p><b>Price: </b> {item.price * (100 - item.discountPercentage) / 100} </p>
                     <p><b>Rating: </b> {item.rating} ⭐ </p>
                     <div className="btn">
-                        <button>Buy Now</button>
+                        <button onClick={() => {setBuyNowCard(true); setPaymentPage(true); setBuyNowCart(false)}}>Buy Now</button>
                         <button onClick={() => { handleCart(item) }}>Add To Cart</button>
                     </div>
                 </div>)

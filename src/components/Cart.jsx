@@ -1,6 +1,8 @@
 import React from 'react'
 
-function Cart({ displayCart, data }) {
+function Cart({ displayCart, data, buynow, payment }) {
+    const { isBuyNowCart, setBuyNowCart } = buynow;
+    const { paymentPage, setPaymentPage } = payment;
     const { cartData, setCartData } = data;
     const { cartPanel, setCartPanel } = displayCart;
 
@@ -55,6 +57,7 @@ function Cart({ displayCart, data }) {
                         </div>
                     )
                 })}
+                <button className='buy-btn' onClick={(e) => { e.stopPropagation(); setCartPanel(false); setPaymentPage(true); setBuyNowCart(true); }}>BuyNow</button>
             </article>
         </section>
     )
